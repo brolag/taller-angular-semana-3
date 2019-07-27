@@ -1,9 +1,8 @@
+
 <app-create-task-form (taskTitle)="updateList($event)" ></app-create-task-form>
       
 <div class="task-list-wrapper">
-    <ul class="task-list">
-        <li *ngFor="let task of taskList">
-            <app-task [task]="task"></app-task>      
-        </li>
-    </ul>
+    <ng-container *ngFor="let task of taskList">
+        <app-task [task]="task"></app-task>      
+    </ng-container>
 </div>

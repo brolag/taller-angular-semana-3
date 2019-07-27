@@ -1,6 +1,7 @@
-
-<div class="input-form">
-        <label for="task">Create new task:</label>
-        <input type="text" id="task" [(ngModel)]="newTaskTitle" />
-        <button (click)="submitForm()">Create task</button>
+<div class="form-group">
+  <h2 >Create new task:</h2>
+  <input type="text" id="task" class="form-control" [(ngModel)]="newTaskTitle" />
 </div>
+ <div class="form-grou">
+    <button (click)="submitForm()" class="btn btn-primary">Create task</button>
+ </div>
