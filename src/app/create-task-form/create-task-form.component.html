@@ -1,7 +1,7 @@
 <div class="form-group">
   <h2 >Create new task:</h2>
-  <input type="text" id="task" class="form-control" [(ngModel)]="newTaskTitle" />
+  <input #taskInput autofocus type="text" id="task" class="form-control" [(ngModel)]="newTaskTitle" (keydown)="keyDown($event)" />
 </div>
  <div class="form-grou">
-    <button (click)="submitForm()" class="btn btn-primary">Create task</button>
+    <button (click)="submitForm()" [disabled]="isInputEmpty()" class="btn btn-primary">Create task</button>
  </div>

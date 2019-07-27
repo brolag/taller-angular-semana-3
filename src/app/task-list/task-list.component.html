@@ -3,6 +3,6 @@
       
 <div class="task-list-wrapper">
     <ng-container *ngFor="let task of taskList">
-        <app-task [task]="task"></app-task>      
+        <app-task (completedTask)="completeTask($event)" (deletedTask)="deleteTask($event)" [task]="task"></app-task>      
     </ng-container>
 </div>

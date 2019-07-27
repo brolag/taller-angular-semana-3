@@ -1,3 +1,16 @@
-<div class="task card p-2 mt-3 mb-3">
-    <h5 class="card-title">{{task.title}}</h5>
+<div 
+    class="task card p-2 mt-3 mb-3" 
+    [style.border]="getBorderColor()" 
+    [ngClass]="{'alert-light': isInProgress(), 'alert-success': !isInProgress()}">
+    <div class="d-inline-flex justify-content-between">
+        <div class="task-info">
+            <h5 class="card-title">{{task.title}}</h5>
+            <p>{{task.date}}</p>
+         </div>
+
+         <div class="task-tools">
+            <button (click)="completeTask()" class="btn btn-outline-success">Complete</button>
+            <button (click)="deleteTask()" class="btn btn-outline-danger">Delete</button>
+         </div>
+    </div>
 </div>  

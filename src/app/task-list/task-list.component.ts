@@ -1,35 +1,42 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { TaskStatus, Task } from '../models/task.interface';
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss']
 })
-export class TaskListComponent implements OnInit {
+export class TaskListComponent {
   
   public newTask: any = {};
-  public taskList: Array<any> = [];
+  public taskList: Array<Task> = [];
   
   constructor() { }
 
-  ngOnInit() {
-    console.log('esta es la nueva lista', this.taskList);
-  }
-
   public updateList(taskTitle: string): void {
     this.newTask = this.createTask(taskTitle, new Date());
-    console.log('Se creo una nueva tarea: ', this.newTask);
     this.taskList = this.addTask(this.taskList, this.newTask);
     this.cleanForm();
   }
 
-  private createTask(title: string, date: Date) {
-    return { title, date };
+  private createTask(title: string, date: Date): Task {
+    return { id: uuid.v1(), title, date, status: TaskStatus.IN_PROGRESS };
   }
 
-  private addTask(taskList, task) {
-    taskList.push(task);
-    return taskList;
+  private addTask(taskList: Array<Task>, task: Task): Array<Task> {
+    return [...taskList, task];
+  }
+
+  public deleteTask(id: string) {
+    this.taskList = this.taskList.filter(task => task.id !== id);
+  }
+
+  public completeTask(id: string) {
+    this.taskList = this.taskList.map(task => {
+      if (task.id === id) task.status = TaskStatus.DONE;
+      return task;
+    })
   }
   
   private cleanForm(): void {
